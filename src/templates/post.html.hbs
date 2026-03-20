@@ -17,6 +17,7 @@
       --text:    {{ theme.text }};
       --radius:  {{ theme.radius }};
       --font:    {{ fontStack }};
+      {{#if theme.border}}--border: {{ theme.border }};{{/if}}
     }
     {{{ css }}}
   </style>

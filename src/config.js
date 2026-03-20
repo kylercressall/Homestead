@@ -32,6 +32,7 @@ function loadConfig(root = process.cwd()) {
       text: raw.theme?.text || "#f5f5f5",
       font: raw.theme?.font || "Inter",
       radius: raw.theme?.radius || "10px",
+      border: raw.theme?.border || null,
     },
     links: raw.links,
     posts_dir: raw.posts_dir || null,

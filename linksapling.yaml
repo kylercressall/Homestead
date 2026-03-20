@@ -8,17 +8,18 @@ bio: "Building things on the internet."
 # avatar: "./avatar.jpg"
 
 theme:
-  background: "#0d0d0d"   # page background
-  surface:    "#1a1a1a"   # button / card background
-  accent:     "#7c3aed"   # hover color
-  text:       "#f0f0f0"   # main text color
-  font:       "Inter"     # Google Font name, or "system" to use no external font
-  radius:     "10px"      # corner radius on buttons and cards
+  background: "#f6f1e8" # warm paper-like background
+  surface: "#fffaf2" # soft card/button background
+  accent: "#c26d3a" # earthy terracotta hover/accent
+  text: "#2f241f" # deep brown text
+  font: "Oxygen" # more editorial/artsy feel
+  radius: "16px" # softer, more organic corners
+  border: "#d4b99a" # optional — outlines and shadows (omit to disable)
 
 links:
   - label: "GitHub"
     url: "https://github.com/yourname"
-    icon: github           # optional — matches a key in src/icons.js
+    icon: github
 
   - label: "Twitter / X"
     url: "https://x.com/yourname"

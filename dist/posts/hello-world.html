@@ -6,15 +6,16 @@
   <title>Hello, World — Your Name</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:      #0d0d0d;
-      --surface: #1a1a1a;
-      --accent:  #7c3aed;
-      --text:    #f0f0f0;
-      --radius:  10px;
-      --font:    &quot;Inter&quot;, sans-serif;
+      --bg:      #f6f1e8;
+      --surface: #fffaf2;
+      --accent:  #c26d3a;
+      --text:    #2f241f;
+      --radius:  16px;
+      --font:    &quot;Oxygen&quot;, sans-serif;
+      --border: #d4b99a;
     }
     *,
 *::before,
@@ -31,19 +32,59 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 3rem 1rem 5rem;
+  align-items: flex-start;
+  padding: 5rem 1.5rem 4rem;
 }
 
 main {
   width: 100%;
-  max-width: 480px;
+  max-width: 860px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  gap: 2rem;
 }
 
 /* --- Profile --- */
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border, color-mix(in srgb, var(--text) 10%, transparent));
+}
+
+/* --- Two-column layout --- */
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: start;
+  position: relative;
+}
+
+.columns::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(100% / 3);
+  transform: translateX(-50%);
+  width: 1px;
+  background: var(--border, color-mix(in srgb, var(--text) 10%, transparent));
+}
+
+@media (max-width: 640px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .columns::after {
+    display: none;
+  }
+}
 
 .avatar {
   width: 96px;
@@ -70,11 +111,17 @@ h1 {
 /* --- Links --- */
 
 .links {
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+}
+
+/* Center links if there are no posts */
+.links:only-child {
+  grid-column: 1 / -1;
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .link-btn {
@@ -90,14 +137,17 @@ h1 {
   border-radius: var(--radius);
   font-size: 0.95rem;
   font-weight: 600;
+  border: 1px solid var(--border, transparent);
   transition:
     background 0.15s ease,
-    transform 0.1s ease;
+    transform 0.1s ease,
+    box-shadow 0.15s ease;
 }
 
 .link-btn:hover {
   background: var(--accent);
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--border, transparent);
 }
 
 .link-btn .icon {
@@ -117,10 +167,6 @@ h1 {
 /* --- Posts --- */
 
 .posts {
-  width: 100%;
-  margin-top: 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
 }
 
 .posts-heading {
@@ -140,11 +186,13 @@ h1 {
   text-decoration: none;
   color: var(--text);
   margin-bottom: 0.5rem;
-  transition: background 0.15s ease;
+  border: 1px solid var(--border, transparent);
+  transition: background 0.15s ease, box-shadow 0.15s ease;
 }
 
 .post-card:hover {
   background: color-mix(in srgb, var(--accent) 25%, var(--surface));
+  box-shadow: 0 4px 12px var(--border, transparent);
 }
 
 .post-header {
@@ -278,22 +326,23 @@ article {
 
       <div class="content">
         <h2>Why I built this</h2>
-<p>I wanted a simple place to share my links and writing without handing my content over to a third-party platform. So I built <strong>LinkSapling</strong> — a static site generator that outputs plain HTML you can host anywhere.</p>
-<p>No tracking. No upsells. Just a config file and some markdown.</p>
+<p>I wanted a simple place to host all of my links that doesn&#39;t require even more account than I already have.
+LinkSapling is a simple repo to easily add your own links and posts customized for you. It will also act as
+a good starting point to build additional features on top of in the future.</p>
 <h2>What it can do</h2>
 <ul>
-<li>Customizable colors, fonts, and layout via a single YAML file</li>
+<li>Customizable colors, fonts, and layout all in one YAML file</li>
 <li>Social links with icons</li>
-<li>Blog posts written in Markdown (like this one)</li>
-<li>Outputs plain HTML — host on GitHub Pages, Netlify, or anywhere</li>
+<li>Blog posts written in markdown (like this one)</li>
+<li>Outputs static HTML to easily host on Github Pages</li>
 </ul>
 <h2>A code example</h2>
 <pre><code class="language-js">// This is what the build script does at its core
 const html = template({ title, links, posts });
-fs.writeFileSync(&#39;dist/index.html&#39;, html);
+fs.writeFileSync(&quot;dist/index.html&quot;, html);
 </code></pre>
-<h2>What&#39;s next</h2>
-<p>More themes, an <code>init</code> command, and a <code>dev</code> server for live preview. Stay tuned.</p>
+<h2>Potential Additional Features</h2>
+<p>More themes, more link options and icons, imbed photos/gifs, more complex posts, and building the repo as a cli tool.</p>
 
       </div>
     </article>
