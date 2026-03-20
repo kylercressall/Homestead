@@ -1,0 +1,18 @@
+{
+  "name": "linksapling",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "node src/build.js"
+  },
+  "keywords": [],
+  "author": "Kyler Cressall",
+  "license": "MIT",
+  "description": "An open source LinkTree alternative to easily edit and host on Github Pages",
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "handlebars": "^4.7.8",
+    "js-yaml": "^4.1.1",
+    "marked": "^17.0.4"
+  }
+}

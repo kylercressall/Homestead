@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }} — {{ siteTitle }}</title>
+  {{#if googleFont}}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family={{ fontFamily }}:wght@400;600;700&display=swap" rel="stylesheet" />
+  {{/if}}
+  <style>
+    :root {
+      --bg:      {{ theme.background }};
+      --surface: {{ theme.surface }};
+      --accent:  {{ theme.accent }};
+      --text:    {{ theme.text }};
+      --radius:  {{ theme.radius }};
+      --font:    {{ fontStack }};
+    }
+    {{{ css }}}
+  </style>
+</head>
+<body>
+  <main>
+    <article>
+      <a class="back" href="../index.html">← {{ siteTitle }}</a>
+
+      <h1>{{ title }}</h1>
+      {{#if date}}<p class="post-meta">{{ date }}</p>{{/if}}
+
+      <div class="content">
+        {{{ content }}}
+      </div>
+    </article>
+  </main>
+</body>
+</html>

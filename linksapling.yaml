@@ -1,0 +1,33 @@
+# Your display name — shown as the page title and <h1>
+title: "Your Name"
+
+# Short bio shown below your name (optional)
+bio: "Building things on the internet."
+
+# Path to your profile picture, relative to this file (optional)
+# avatar: "./avatar.jpg"
+
+theme:
+  background: "#0d0d0d"   # page background
+  surface:    "#1a1a1a"   # button / card background
+  accent:     "#7c3aed"   # hover color
+  text:       "#f0f0f0"   # main text color
+  font:       "Inter"     # Google Font name, or "system" to use no external font
+  radius:     "10px"      # corner radius on buttons and cards
+
+links:
+  - label: "GitHub"
+    url: "https://github.com/yourname"
+    icon: github           # optional — matches a key in src/icons.js
+
+  - label: "Twitter / X"
+    url: "https://x.com/yourname"
+    icon: twitter
+
+  - label: "My Website"
+    url: "https://yoursite.com"
+    icon: globe
+
+# Folder of .md files to show as blog posts (optional)
+# Each file should have frontmatter: title, date, excerpt
+posts_dir: "./posts"
