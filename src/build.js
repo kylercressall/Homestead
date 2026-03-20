@@ -48,6 +48,19 @@ function fontVars(config) {
   };
 }
 
+// Extracts plain text from the first body paragraph of a markdown file.
+// Used for the post card preview — strips headings, links, and emphasis
+// so the card shows readable prose rather than raw markdown syntax.
+function extractPreview(markdown) {
+  const paragraphs = markdown.split(/\n{2,}/);
+  const first = paragraphs.find(p => p.trim() && !p.trim().startsWith('#'));
+  if (!first) return null;
+  return first
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // [text](url) → text
+    .replace(/[*_`>]/g, '')                   // bold, italic, code, blockquote markers
+    .trim();
+}
+
 // --- Posts ---
 
 function loadPosts(config) {
@@ -71,6 +84,7 @@ function loadPosts(config) {
         date: formatDate(data.date),
         rawDate: data.date ? new Date(data.date) : new Date(0),
         excerpt: data.excerpt || null,
+        preview: extractPreview(content),
         content: marked(content, { gfm: true }),
         url: `posts/${slug}.html`,
       };

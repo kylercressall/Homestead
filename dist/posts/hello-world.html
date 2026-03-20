@@ -52,7 +52,8 @@ main {
   align-items: center;
   gap: 0.5rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border, color-mix(in srgb, var(--text) 10%, transparent));
+  border-bottom: 1px solid
+    var(--border, color-mix(in srgb, var(--text) 10%, transparent));
 }
 
 /* --- Two-column layout --- */
@@ -66,7 +67,7 @@ main {
 }
 
 .columns::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -187,7 +188,9 @@ h1 {
   color: var(--text);
   margin-bottom: 0.5rem;
   border: 1px solid var(--border, transparent);
-  transition: background 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .post-card:hover {
@@ -218,6 +221,35 @@ h1 {
   opacity: 0.6;
   margin-top: 0.375rem;
   line-height: 1.5;
+}
+
+.post-preview {
+  position: relative;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  opacity: 0.5;
+  margin-top: 0.625rem;
+  max-height: 4.8em; /* ~3 lines */
+  overflow: hidden;
+}
+
+.post-preview::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5em;
+  background: linear-gradient(to bottom, transparent, var(--surface));
+  pointer-events: none;
+}
+
+.post-card:hover .post-preview::after {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--accent) 25%, var(--surface))
+  );
 }
 
 /* --- Post article page --- */
@@ -326,7 +358,7 @@ article {
 
       <div class="content">
         <h2>Why I built this</h2>
-<p>I wanted a simple place to host all of my links that doesn&#39;t require even more account than I already have.
+<p>I wanted a simple place to host all of my links that doesn&#39;t require even more accounts than I already have (be able to host with Github Pages, not other hosting sites).
 LinkSapling is a simple repo to easily add your own links and posts customized for you. It will also act as
 a good starting point to build additional features on top of in the future.</p>
 <h2>What it can do</h2>

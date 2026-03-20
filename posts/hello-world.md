@@ -6,7 +6,7 @@ excerpt: "An example post to show how this feature works."
 
 ## Why I built this
 
-I wanted a simple place to host all of my links that doesn't require even more account than I already have.
+I wanted a simple place to host all of my links that doesn't require even more accounts than I already have (be able to host with Github Pages, not other hosting sites).
 LinkSapling is a simple repo to easily add your own links and posts customized for you. It will also act as
 a good starting point to build additional features on top of in the future.
 

@@ -204,6 +204,35 @@ h1 {
   line-height: 1.5;
 }
 
+.post-preview {
+  position: relative;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  opacity: 0.5;
+  margin-top: 0.625rem;
+  max-height: 4.8em; /* ~3 lines */
+  overflow: hidden;
+}
+
+.post-preview::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5em;
+  background: linear-gradient(to bottom, transparent, var(--surface));
+  pointer-events: none;
+}
+
+.post-card:hover .post-preview::after {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--accent) 25%, var(--surface))
+  );
+}
+
 /* --- Post article page --- */
 
 article {
