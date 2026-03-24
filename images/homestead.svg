@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="520"
+   height="100"
+   viewBox="0 0 520 100"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <rect
+       x="17.852161"
+       y="94.973503"
+       width="307.77127"
+       height="67.838219"
+       id="rect1" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-7.4660785,-215.9009)">
+    <text
+       xml:space="preserve"
+       id="text1"
+       style="font-size:48px;font-family:Oxygen;-inkscape-font-specification:Oxygen;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);fill:#333333"
+       transform="matrix(1.6389304,0,0,1.6389304,-15.285006,70.907206)"><tspan
+         x="17.851562"
+         y="140.00746"
+         id="tspan3"><tspan
+           style="font-weight:bold"
+           id="tspan2">~/homestead</tspan></tspan></text>
+    <path
+       d="m 105.3533,242.5994 21.72996,-21.1985 h 5.95219 l 22.74753,19.61644 h -9.64348 l -16.01093,-10.631 -14.86889,11.93315 z"
+       id="text3"
+       style="font-weight:bold;font-size:48px;font-family:Oxygen;-inkscape-font-specification:Oxygen;white-space:pre;fill:#333333;stroke-width:1.72379"
+       aria-label="^" />
+  </g>
+</svg>
