@@ -1,5 +1,5 @@
 <a id="readme-top"></a>
-[![CI](https://github.com/kylercressall/LinkSapling/actions/workflows/ci.yml/badge.svg)](https://github.com/kylercressall/LinkSapling/actions/workflows/ci.yml)
+[![CI](https://github.com/kylercressall/Homestead/actions/workflows/ci.yml/badge.svg)](https://github.com/kylercressall/Homestead/actions/workflows/ci.yml)
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -10,19 +10,19 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/kylercressall/LinkSapling">
+  <a href="https://github.com/kylercressall/Homestead">
     <img src="images/logo.png" alt="Logo" width="160" height="160">
   </a>
 
-<h3 align="center">LinkSapling</h3>
+<h3 align="center">Homestead</h3>
 
   <p align="center">
-    A simple, self-hosted alternative to LinkTree. One YAML file. One build command. Pure HTML/CSS output ready for GitHub Pages.
+    Your corner of the internet. Edit one file, add your posts, upload to show the world.
     <br />
     <br />
-    <a href="https://github.com/kylercressall/LinkSapling/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/kylercressall/Homestead/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
-    <a href="https://github.com/kylercressall/LinkSapling/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/kylercressall/Homestead/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -58,15 +58,16 @@
 
 ![screenshot][product-screenshot]
 
-LinkSapling is an open source alternative to LinkTree. Configure your page in a single YAML file to set your name, bio, social links, and theme colors. Then run one build command to generate a fully static site you can host on Github Pages for free.
+Your home base on the web. Compile your links and create posts to show off projects and work you've done.
 
-**Why LinkSapling?**
+**Why Homestead?**
 
-- No account required on a third-party platform (outside of your hosting)
-- Full control over your data and design
-- Zero JavaScript in the build output, just plain HTML and CSS
-- Blog support: write posts in Markdown which render automatically
-- Customize colors, fonts, border radius, and more from one config file
+- No third-party platform or account needed (outside Github)
+- Create your own site without opening a code editor
+- Zero JavaScript output, plain HTML and CSS for simplicity
+- Blog support built in, just drop Markdown files in a folder
+- Fully themeable from one config file
+- Free to host on GitHub Pages
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -91,19 +92,19 @@ LinkSapling is an open source alternative to LinkTree. Configure your page in a 
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/kylercressall/LinkSapling.git
-   cd LinkSapling
+   git clone https://github.com/kylercressall/Homestead.git
+   cd Homestead
    ```
 2. Install dependencies
    ```sh
    npm install
    ```
-3. Edit `linksapling.yaml` with your own information (see [Usage](#usage))
+3. Edit `homestead.yaml` with your own information (see [Usage](#usage))
 4. Build the site
    ```sh
    npm run build
    ```
-5. Open `dist/index.html` in your browser to preview, or deploy the `dist/` folder to GitHub Pages
+5. Preview at `dist/index.html` or deploy the `dist/` folder to GitHub Pages
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -111,7 +112,7 @@ LinkSapling is an open source alternative to LinkTree. Configure your page in a 
 
 ## Usage
 
-All configuration lives in `linksapling.yaml` at the project root.
+All configuration lives in `homestead.yaml` at the project root.
 
 ```yaml
 # Your display name — shown as the page title and <h1>
@@ -151,7 +152,7 @@ posts_dir: "./posts"
 
 ### Writing Posts
 
-Drop `.md` files into your `posts/` folder. Each file needs a frontmatter block at the top:
+Drop `.md` files into your `posts/` folder with a frontmatter block:
 
 ```markdown
 ---
@@ -163,13 +164,13 @@ excerpt: "A short summary shown on the index page."
 Your post content here, written in standard Markdown.
 ```
 
-Run `npm run build` and each post will generate its own page at `dist/posts/<slug>.html`.
+Each post gets its own page at `dist/posts/<slug>.html` after a build.
 
 ### Deploying to GitHub Pages
 
 1. Push your repo to GitHub
 2. Go to **Settings → Pages** and set the source to the `dist/` folder (or use a `gh-pages` branch)
-3. Your site will be live at `https://<your-username>.github.io/LinkSapling`
+3. Your site will be live at `https://<your-username>.github.io/Homestead`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -177,15 +178,14 @@ Run `npm run build` and each post will generate its own page at `dist/posts/<slu
 
 ## Roadmap
 
-- [ ] CLI tool — `linksapling init`, `linksapling build`, `linksapling dev`
-- [ ] Dev server with live reload (`linksapling dev`)
-- [ ] One-command deploy to GitHub Pages (`linksapling deploy`)
-- [ ] Additional bundled icons
-- [ ] Multiple built-in themes
-- [ ] Embed images and GIFs in posts
-- [ ] Publish to npm for global install
+- [ ] More built-in icons
+- [ ] Multiple bundled themes to pick from
+- [ ] Image and GIF support in posts
+- [ ] "Use this template" GitHub template repo setup
+- [ ] Auto-deploy via GitHub Actions on push
+- [ ] Full from-zero video tutorial
 
-See the [open issues](https://github.com/kylercressall/LinkSapling/issues) for a full list of proposed features and known bugs.
+See the [open issues](https://github.com/kylercressall/Homestead/issues) for a full list of proposed features and known bugs.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -193,9 +193,7 @@ See the [open issues](https://github.com/kylercressall/LinkSapling/issues) for a
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion, please fork the repo and open a pull request. You can also open an issue with the label `enhancement`. Don't forget to give the project a star!
+PRs and issues are welcome. Fork the repo, make your change, and open a pull request.
 
 1. Fork the project
 2. Create your feature branch (`git checkout -b feature/my-feature`)
@@ -207,8 +205,8 @@ If you have a suggestion, please fork the repo and open a pull request. You can 
 
 ### Top Contributors
 
-<a href="https://github.com/kylercressall/LinkSapling/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=kylercressall/LinkSapling" alt="contrib.rocks image" />
+<a href="https://github.com/kylercressall/Homestead/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=kylercressall/Homestead" alt="contrib.rocks image" />
 </a>
 
 <!-- LICENSE -->
@@ -225,7 +223,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Kyler Cressall - [GitHub](https://github.com/kylercressall)
 
-Project Link: [https://github.com/kylercressall/LinkSapling](https://github.com/kylercressall/LinkSapling)
+Project Link: [https://github.com/kylercressall/Homestead](https://github.com/kylercressall/Homestead)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -241,16 +239,16 @@ Project Link: [https://github.com/kylercressall/LinkSapling](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/kylercressall/LinkSapling.svg?style=for-the-badge
-[contributors-url]: https://github.com/kylercressall/LinkSapling/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/kylercressall/LinkSapling.svg?style=for-the-badge
-[forks-url]: https://github.com/kylercressall/LinkSapling/network/members
-[stars-shield]: https://img.shields.io/github/stars/kylercressall/LinkSapling.svg?style=for-the-badge
-[stars-url]: https://github.com/kylercressall/LinkSapling/stargazers
-[issues-shield]: https://img.shields.io/github/issues/kylercressall/LinkSapling.svg?style=for-the-badge
-[issues-url]: https://github.com/kylercressall/LinkSapling/issues
-[license-shield]: https://img.shields.io/github/license/kylercressall/LinkSapling.svg?style=for-the-badge
-[license-url]: https://github.com/kylercressall/LinkSapling/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/kylercressall/Homestead.svg?style=for-the-badge
+[contributors-url]: https://github.com/kylercressall/Homestead/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/kylercressall/Homestead.svg?style=for-the-badge
+[forks-url]: https://github.com/kylercressall/Homestead/network/members
+[stars-shield]: https://img.shields.io/github/stars/kylercressall/Homestead.svg?style=for-the-badge
+[stars-url]: https://github.com/kylercressall/Homestead/stargazers
+[issues-shield]: https://img.shields.io/github/issues/kylercressall/Homestead.svg?style=for-the-badge
+[issues-url]: https://github.com/kylercressall/Homestead/issues
+[license-shield]: https://img.shields.io/github/license/kylercressall/Homestead.svg?style=for-the-badge
+[license-url]: https://github.com/kylercressall/Homestead/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png

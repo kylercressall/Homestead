@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Jest testing framework with unit tests for `slugify`, `formatDate`, `extractPreview`, and `loadConfig`
 - Babel config (`babel.config.js`) to allow Jest to transform ESM dependencies
-- Test fixtures: sample `linksapling.yaml` and markdown post for isolated test runs
+- Test fixtures: sample `homestead.yaml` and markdown post for isolated test runs
 - CI workflow (`.github/workflows/ci.yml`) — runs tests and build on every push and pull request to `main`
 
 ### Changed
@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial build script, reads `linksapling.yaml` and outputs static HTML to `dist/`
+- Initial build script, reads `homestead.yaml` and outputs static HTML to `dist/`
 - Handlebars templates for the main page and individual post pages
 - Markdown blog post support with YAML frontmatter (`title`, `date`, `excerpt`)
 - Post preview cards on the index page with excerpt and date

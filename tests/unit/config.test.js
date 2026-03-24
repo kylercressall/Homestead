@@ -13,6 +13,6 @@ describe('loadConfig', () => {
   });
 
   test('throws if config file is missing', () => {
-    expect(() => loadConfig('/nonexistent/path')).toThrow('linksapling.yaml not found');
+    expect(() => loadConfig('/nonexistent/path')).toThrow('homestead.yaml not found');
   });
 });

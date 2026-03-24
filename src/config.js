@@ -3,10 +3,10 @@ const path = require("path");
 const yaml = require("js-yaml");
 
 function loadConfig(root = process.cwd()) {
-  const configPath = path.join(root, "linksapling.yaml");
+  const configPath = path.join(root, "homestead.yaml");
 
   if (!fs.existsSync(configPath)) {
-    throw new Error(`linksapling.yaml not found in ${root}`);
+    throw new Error(`homestead.yaml not found in ${root}`);
   }
 
   const raw = yaml.load(fs.readFileSync(configPath, "utf8"));

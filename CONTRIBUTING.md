@@ -1,6 +1,6 @@
-# Contributing to LinkSapling
+# Contributing to Homestead
 
-Feel free to contribute to LinkSapling! Features, icons, bug fixes are all welcome.
+Feel free to contribute to Homestead! Features, icons, bug fixes are all welcome.
 
 ## Getting Started
 
@@ -25,7 +25,7 @@ Feel free to contribute to LinkSapling! Features, icons, bug fixes are all welco
 ```
 src/
   build.js          # Main build — reads config, renders templates, writes dist/
-  config.js         # Loads and validates linksapling.yaml
+  config.js         # Loads and validates homestead.yaml
   icons.js          # Bundled SVG icons keyed by name (e.g. "github", "twitter")
   styles/
     base.css        # Base CSS using custom properties from theme config
@@ -58,7 +58,7 @@ Icons live in `src/icons.js` as inline SVG strings. To add one:
 
 ## Reporting Bugs
 
-Open an issue and include what you expected, what actually happened, your `linksapling.yaml` (strip personal info), and your Node.js version (`node -v`).
+Open an issue and include what you expected, what actually happened, your `homestead.yaml` (strip personal info), and your Node.js version (`node -v`).
 
 ## Suggesting Features
 

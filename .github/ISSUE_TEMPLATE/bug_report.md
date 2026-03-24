@@ -15,7 +15,7 @@ labels: bug
 2.
 3.
 
-**`linksapling.yaml` (remove personal info)**
+**`homestead.yaml` (remove personal info)**
 ```yaml
 
 ```
