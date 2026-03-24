@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/kylercressall/Homestead">
-    <img src="images/logo.png" alt="Logo" width="160" height="160">
+    <img src="images/homestead.svg" alt="Logo" width="508" height="98">
   </a>
 
 <h3 align="center">Homestead</h3>
