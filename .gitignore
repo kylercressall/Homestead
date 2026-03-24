@@ -1,1 +1,8 @@
 node_modules
+CLAUDE.md
+
+# don't push dist folder
+dist/
+
+# jest --coverage
+coverage/ 

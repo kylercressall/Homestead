@@ -6,19 +6,16 @@ function loadConfig(root = process.cwd()) {
   const configPath = path.join(root, "linksapling.yaml");
 
   if (!fs.existsSync(configPath)) {
-    console.error("Error: linksapling.yaml not found in", root);
-    process.exit(1);
+    throw new Error(`linksapling.yaml not found in ${root}`);
   }
 
   const raw = yaml.load(fs.readFileSync(configPath, "utf8"));
 
   if (!raw.title) {
-    console.error('Error: config must have a "title" field');
-    process.exit(1);
+    throw new Error('config must have a "title" field');
   }
   if (!raw.links || raw.links.length === 0) {
-    console.error("Error: config must have at least one link");
-    process.exit(1);
+    throw new Error("config must have at least one link");
   }
 
   return {

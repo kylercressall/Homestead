@@ -29,7 +29,7 @@ function formatDate(raw) {
   if (!raw) return null;
   const d = new Date(raw);
   if (isNaN(d)) return String(raw);
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 }
 
 function fontVars(config) {
@@ -160,6 +160,11 @@ function build() {
   if (posts.length) {
     posts.forEach(p => console.log(`  posts/${p.slug}.html`));
   }
+  console.log(`\n  file://${path.join(DIST, 'index.html')}`);
 }
 
-build();
+if (require.main === module) {
+  build();
+}
+
+module.exports = { slugify, formatDate, extractPreview, fontVars };
