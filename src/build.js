@@ -160,6 +160,7 @@ function build() {
   if (posts.length) {
     posts.forEach(p => console.log(`  posts/${p.slug}.html`));
   }
+  console.log(`\n  file://${path.join(DIST, 'index.html')}`);
 }
 
 build();
