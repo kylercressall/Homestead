@@ -20,6 +20,8 @@
     Your corner of the internet. Edit one file, add your posts, upload to show the world.
     <br />
     <br />
+    <a href="https://kylercressall.github.io/Homestead/">View Live Demo</a>
+    &middot;
     <a href="https://github.com/kylercressall/Homestead/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
     <a href="https://github.com/kylercressall/Homestead/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
