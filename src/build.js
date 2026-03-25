@@ -156,6 +156,8 @@ function build() {
     fs.writeFileSync(path.join(DIST, 'posts', `${post.slug}.html`), postHtml);
   }
 
+  fs.writeFileSync(path.join(DIST, '.nojekyll'), '');
+
   console.log(`Built ${1 + posts.length} page(s) → dist/`);
   if (posts.length) {
     posts.forEach(p => console.log(`  posts/${p.slug}.html`));
