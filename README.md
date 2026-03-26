@@ -122,7 +122,7 @@ title: "Jane Doe"
 bio: "Designer & maker of things."
 
 # Path to your profile picture, relative to this file (optional)
-avatar: "./avatar.jpg"
+# avatar: ".images/avatar.png"
 
 theme:
   background: "#f6f1e8" # page background

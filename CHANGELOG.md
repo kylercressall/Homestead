@@ -32,3 +32,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Google Fonts integration: load any font by name or fall back to system stack
 - Bundled inline SVG icons: github, twitter, instagram, linkedin, youtube, twitch, discord, bluesky, email, globe, rss
 - Avatar support: copies image to `dist/` for self-contained output
+
+
+## [0.2.0] - 2026-03-26
+
+### Added
+
+- Three functional layouts, "links" for only links, "portfolio" for many small posts, "blog" for full sized posts to click into
+- Updated documentation to show new changes and showcase avatar placement as well
