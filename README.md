@@ -58,7 +58,7 @@
 
 ![screenshot][product-screenshot]
 
-Your home base on the web. Compile your links and create posts to show off projects and work you've done.
+Your home base on the web. Compile your links, create posts to show off projects and create blog posts all in one place.
 
 **Why Homestead?**
 
