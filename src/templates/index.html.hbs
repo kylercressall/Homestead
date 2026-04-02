@@ -34,33 +34,16 @@
       {{/if}}
     </header>
 
-    <div class="columns">
-      <nav class="links">
-        {{#each links}}
-        <a class="link-btn" href="{{ url }}" target="_blank" rel="noopener noreferrer">
-          {{#if iconSvg}}
-          <span class="icon">{{{ iconSvg }}}</span>
-          {{/if}}
-          {{ label }}
-        </a>
-        {{/each}}
-      </nav>
-
-      {{#if posts.length}}
-      <section class="posts{{#if portfolioLayout}} posts--grid{{/if}}">
-        {{#each posts}}
-        <a class="post-card" href="{{ url }}">
-          <div class="post-header">
-            <span class="post-title">{{ title }}</span>
-            {{#if date}}<span class="post-date">{{ date }}</span>{{/if}}
-          </div>
-          {{#if subtitle}}<p class="post-subtitle">{{ subtitle }}</p>{{/if}}
-          {{#if preview}}<div class="post-preview">{{ preview }}</div>{{/if}}
-        </a>
-        {{/each}}
+    {{#each rows}}
+    <div class="page-row" style="max-width: {{columnWidth}}">
+      {{#each sections}}
+      <section class="site-section site-section--{{type}}" id="{{id}}" style="flex: {{width}}">
+        {{#if title}}<h2 class="section-heading">{{title}}</h2>{{/if}}
+        {{> (lookup . 'type') this}}
       </section>
-      {{/if}}
+      {{/each}}
     </div>
+    {{/each}}
   </main>
 </body>
 </html>

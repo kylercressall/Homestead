@@ -1,7 +1,7 @@
 ---
-title: "Hello, World2"
+title: "My opinion on open source software"
 date: 2026-03-19
-subtitle: "An example post to show how this feature works."
+subtitle: "Explaining my deep, complex opinion on OSS."
 ---
 
 ## Why I built this

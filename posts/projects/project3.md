@@ -1,7 +1,7 @@
 ---
-title: "Hello, World3"
+title: "Sales Internship"
 date: 2026-03-19
-subtitle: "An example post to show how this feature works."
+subtitle: "Internship at Sales Co. to sell B2B software."
 ---
 
 ## Why I built this

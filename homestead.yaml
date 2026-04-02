@@ -9,32 +9,69 @@ avatar: "./images/avatar.png"
 
 theme:
   background: "#f6f1e8" # warm paper-like background
-  surface: "#fffaf2" # soft card/button background
-  accent: "#c26d3a" # earthy terracotta hover/accent
-  text: "#2f241f" # deep brown text
-  font: "Oxygen" # more editorial/artsy feel
-  radius: "16px" # softer, more organic corners
-  border: "#d4b99a" # optional - outlines and shadows (omit to disable)
+  surface: "#fffaf2"    # soft card/button background
+  accent: "#c26d3a"     # earthy terracotta hover/accent
+  text: "#2f241f"       # deep brown text
+  font: "Oxygen"        # editorial feel
+  radius: "16px"        # soft corners
+  border: "#d4b99a"     # optional outlines (omit to disable)
 
-links:
-  - label: "GitHub"
-    url: "https://github.com/yourname"
-    icon: github
+# The page is built from rows, stacked top to bottom.
+# Each row holds one or more sections displayed as side-by-side columns.
+# Sections in the same row share the row's height and split its width equally.
 
-  - label: "Twitter / X"
-    url: "https://x.com/yourname"
-    icon: twitter
+# Section types:
+#   links      - a set of link buttons (social, contact, etc.)
+#   blog       - posts with title, date, and preview text
+#   portfolio  - posts in a grid showing title and subtitle only
 
-  - label: "My Website"
-    url: "https://yoursite.com"
-    icon: globe
+# Each blog/portfolio section reads from its own posts_dir.
+# You can have as many rows and sections as you want.
+# Each section takes equal width by default. Set width: N to control the ratio,
+# e.g. width: 2 on one section and width: 1 on another gives a 2:1 split.
 
-# Folder of .md files to show as blog posts (optional)
-# Each file should have frontmatter: title, date, subtitle
-posts_dir: "./posts"
+# Each row can have its own column_width (optional, defaults to large):
+#   xsmall  - 360px
+#   small   - 720px
+#   medium  - 1100px
+#   large   - no limit, just the 10% side margins
 
-# Homepage layout (defaults to "blog")
-#   links       - just the link buttons, no posts column
-#   portfolio   - links + posts showing title and subtitle only
-#   blog        - links + posts with a preview of the post text
-layout: portfolio
+rows:
+  - column_width: small
+    sections:
+      - id: "connect"
+        type: "links"
+        width: 3
+        links:
+          - label: "GitHub"
+            url: "https://github.com/yourname"
+            icon: github
+
+          - label: "Twitter / X"
+            url: "https://x.com/yourname"
+            icon: twitter
+
+          - label: "My Website"
+            url: "https://yoursite.com"
+            icon: globe
+
+          - label: "LinkedIn"
+            url: "https://linkedin.com/in/yourname"
+            icon: linkedin
+
+          - label: "Email"
+            url: "mailto:you@example.com"
+            icon: email
+
+      - id: "projects"
+        type: "portfolio"
+        title: "Portfolio"
+        width: 5
+        posts_dir: "./posts/projects"
+
+  - column_width: medium
+    sections:
+      - id: "blog"
+        type: "blog"
+        title: "Blog"
+        posts_dir: "./posts/writing"
