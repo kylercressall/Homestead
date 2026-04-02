@@ -1,10 +1,18 @@
 title: Test Site
 bio: A test bio
-links:
-  - label: GitHub
-    url: https://github.com/test
-    icon: github
-posts_dir: tests/fixtures/posts
 theme:
   background: "#0d0d0d"
   accent: "#7c3aed"
+
+rows:
+  - sections:
+      - id: connect
+        type: links
+        links:
+          - label: GitHub
+            url: https://github.com/test
+            icon: github
+
+      - id: blog
+        type: blog
+        posts_dir: tests/fixtures/posts

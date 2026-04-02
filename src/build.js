@@ -9,11 +9,22 @@ const icons = require('./icons');
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
 
+// Known section types — each maps to a partial in src/templates/sections/.
+// Adding a new type means adding a .hbs file there and listing it here.
+const SECTION_TYPES = ['links', 'portfolio', 'blog'];
+
 // --- Helpers ---
 
 function readTemplate(name) {
   return fs.readFileSync(
     path.join(__dirname, 'templates', `${name}.html.hbs`),
+    'utf8'
+  );
+}
+
+function readSectionTemplate(type) {
+  return fs.readFileSync(
+    path.join(__dirname, 'templates', 'sections', `${type}.hbs`),
     'utf8'
   );
 }
@@ -49,7 +60,7 @@ function fontVars(config) {
 }
 
 // Extracts plain text from the first body paragraph of a markdown file.
-// Used for the post card preview — strips headings, links, and emphasis
+// Used for post card previews — strips headings, links, and emphasis
 // so the card shows readable prose rather than raw markdown syntax.
 function extractPreview(markdown) {
   const paragraphs = markdown.split(/\n{2,}/);
@@ -63,12 +74,12 @@ function extractPreview(markdown) {
 
 // --- Posts ---
 
-function loadPosts(config) {
-  if (!config.posts_dir) return [];
-
-  const dir = path.resolve(ROOT, config.posts_dir);
+// Loads all .md posts from a directory. sectionId becomes the URL namespace
+// so links on the index page point to the right output path.
+function loadPostsFromDir(postsDir, sectionId) {
+  const dir = path.resolve(ROOT, postsDir);
   if (!fs.existsSync(dir)) {
-    console.warn(`Warning: posts_dir "${config.posts_dir}" does not exist, skipping posts.`);
+    console.warn(`Warning: posts_dir "${postsDir}" does not exist, skipping.`);
     return [];
   }
 
@@ -86,7 +97,7 @@ function loadPosts(config) {
         subtitle: data.subtitle || null,
         preview: extractPreview(content),
         content: marked(content, { gfm: true }),
-        url: `posts/${slug}.html`,
+        url: `${sectionId}/${slug}.html`,
       };
     })
     .sort((a, b) => b.rawDate - a.rawDate); // newest first
@@ -98,13 +109,19 @@ function build() {
   const config = loadConfig(ROOT);
   const css = fs.readFileSync(path.join(__dirname, 'styles', 'base.css'), 'utf8');
   const fonts = fontVars(config);
-  const posts = loadPosts(config);
+
+  // Register one Handlebars partial per section type. The index template uses
+  // {{> (lookup . 'type') this}} to dispatch dynamically, so a new section type
+  // only needs a new .hbs file plus an entry in SECTION_TYPES above.
+  for (const type of SECTION_TYPES) {
+    Handlebars.registerPartial(type, readSectionTemplate(type));
+  }
 
   // Clear and recreate dist/
   fs.rmSync(DIST, { recursive: true, force: true });
-  fs.mkdirSync(path.join(DIST, 'posts'), { recursive: true });
+  fs.mkdirSync(DIST, { recursive: true });
 
-  // Resolve avatar — copy into dist/ so the output is self-contained
+  // Avatar — copy into dist/ so the output is self-contained
   let avatarPath = null;
   if (config.avatar) {
     const src = path.resolve(ROOT, config.avatar);
@@ -118,69 +135,83 @@ function build() {
     }
   }
 
-  // Attach icon SVGs to each link
-  const links = config.links.map(link => ({
-    ...link,
-    iconSvg: link.icon ? (icons[link.icon] || null) : null,
+  // Flatten all sections across all rows so we can load posts once per section.
+  // We keep two representations per section:
+  //   allPosts  — full data including content, used to render individual pages
+  //   cardPosts — possibly stripped (portfolio removes preview/date), used in index
+  const allSections = config.rows.flatMap(row => row.sections);
+  const sectionPostMap = new Map(); // sectionId -> { allPosts, cardPosts }
+
+  for (const section of allSections) {
+    const allPosts = section.posts_dir
+      ? loadPostsFromDir(section.posts_dir, section.id)
+      : [];
+
+    const cardPosts = section.type === 'portfolio'
+      ? allPosts.map(p => ({ ...p, preview: null, date: null }))
+      : allPosts;
+
+    sectionPostMap.set(section.id, { allPosts, cardPosts });
+  }
+
+  // Build the rows structure passed to the index template
+  const rows = config.rows.map(row => ({
+    columnWidth: row.columnWidth,
+    sections: row.sections.map(section => {
+      const { cardPosts } = sectionPostMap.get(section.id);
+      const links = section.links.map(link => ({
+        ...link,
+        iconSvg: link.icon ? (icons[link.icon] || null) : null,
+      }));
+      return {
+        id: section.id,
+        type: section.type,
+        title: section.title,
+        width: section.width,
+        links,
+        posts: cardPosts,
+      };
+    }),
   }));
 
-  // Resolve layout — controls what the homepage shows
-  const VALID_LAYOUTS = ['links', 'portfolio', 'blog'];
-  const layout = config.layout || "links";
-  if (!VALID_LAYOUTS.includes(layout)) {
-    console.warn(`Warning: unknown layout "${layout}", falling back to "blog". Valid options: ${VALID_LAYOUTS.join(', ')}`);
-  }
-
-  // For links: pass no posts so the section is omitted and .links:only-child CSS kicks in
-  // For portfolio: strip preview text so cards show title + subtitle only
-  // For blog: posts unchanged
-  let postsForIndex = posts;
-  if (layout === 'links') {
-    postsForIndex = [];
-  } else if (layout === 'portfolio') {
-    postsForIndex = posts.map(p => ({ ...p, preview: null, date: null }));
-    
-  }
-
-  // Shared template context
-  const shared = {
-    css,
-    theme: config.theme,
-    ...fonts,
-  };
-
   // Render index.html
+  const shared = { css, theme: config.theme, ...fonts };
   const indexTpl = Handlebars.compile(readTemplate('index'));
   const indexHtml = indexTpl({
     ...shared,
     title: config.title,
     bio: config.bio,
     avatar: avatarPath,
-    links,
-    posts: postsForIndex,
-    portfolioLayout: layout === 'portfolio',
+    rows,
   });
   fs.writeFileSync(path.join(DIST, 'index.html'), indexHtml);
 
-  // Render each post page
+  // Render individual post pages, one directory per section
   const postTpl = Handlebars.compile(readTemplate('post'));
-  for (const post of posts) {
-    const postHtml = postTpl({
-      ...shared,
-      siteTitle: config.title,
-      title: post.title,
-      date: post.date,
-      content: post.content,
-    });
-    fs.writeFileSync(path.join(DIST, 'posts', `${post.slug}.html`), postHtml);
+  let postCount = 0;
+
+  for (const section of allSections) {
+    const { allPosts } = sectionPostMap.get(section.id);
+    if (!allPosts.length) continue;
+
+    fs.mkdirSync(path.join(DIST, section.id), { recursive: true });
+
+    for (const post of allPosts) {
+      const postHtml = postTpl({
+        ...shared,
+        siteTitle: config.title,
+        title: post.title,
+        date: post.date,
+        content: post.content,
+      });
+      fs.writeFileSync(path.join(DIST, section.id, `${post.slug}.html`), postHtml);
+      postCount++;
+    }
   }
 
   fs.writeFileSync(path.join(DIST, '.nojekyll'), '');
 
-  console.log(`Built ${1 + posts.length} page(s) → dist/`);
-  if (posts.length) {
-    posts.forEach(p => console.log(`  posts/${p.slug}.html`));
-  }
+  console.log(`Built ${1 + postCount} page(s) → dist/`);
   console.log(`\n  file://${path.join(DIST, 'index.html')}`);
 }
 

@@ -1,0 +1,14 @@
+{{#if posts.length}}
+<div class="posts">
+  {{#each posts}}
+  <a class="post-card" href="{{ url }}">
+    <div class="post-header">
+      <span class="post-title">{{ title }}</span>
+      {{#if date}}<span class="post-date">{{ date }}</span>{{/if}}
+    </div>
+    {{#if subtitle}}<p class="post-subtitle">{{ subtitle }}</p>{{/if}}
+    {{#if preview}}<div class="post-preview">{{ preview }}</div>{{/if}}
+  </a>
+  {{/each}}
+</div>
+{{/if}}

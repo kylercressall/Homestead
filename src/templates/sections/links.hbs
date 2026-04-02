@@ -1,0 +1,10 @@
+<nav class="links">
+  {{#each links}}
+  <a class="link-btn" href="{{ url }}" target="_blank" rel="noopener noreferrer">
+    {{#if iconSvg}}
+    <span class="icon">{{{ iconSvg }}}</span>
+    {{/if}}
+    {{ label }}
+  </a>
+  {{/each}}
+</nav>

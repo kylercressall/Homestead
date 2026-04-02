@@ -1,0 +1,12 @@
+{{#if posts.length}}
+<div class="posts">
+  {{#each posts}}
+  <a class="post-card" href="{{ url }}">
+    <div class="post-header">
+      <span class="post-title">{{ title }}</span>
+    </div>
+    {{#if subtitle}}<p class="post-subtitle">{{ subtitle }}</p>{{/if}}
+  </a>
+  {{/each}}
+</div>
+{{/if}}

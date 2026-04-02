@@ -2,6 +2,17 @@ const fs = require("fs");
 const path = require("path");
 const yaml = require("js-yaml");
 
+const VALID_SECTION_TYPES = ['links', 'portfolio', 'blog'];
+const COLUMN_WIDTHS = { xsmall: '360px', small: '720px', medium: '1100px', large: 'none' };
+
+function resolveColumnWidth(value, context) {
+  const key = value || 'large';
+  if (!COLUMN_WIDTHS[key]) {
+    throw new Error(`invalid column_width "${key}" in ${context}. Valid options: ${Object.keys(COLUMN_WIDTHS).join(', ')}`);
+  }
+  return COLUMN_WIDTHS[key];
+}
+
 function loadConfig(root = process.cwd()) {
   const configPath = path.join(root, "homestead.yaml");
 
@@ -14,8 +25,33 @@ function loadConfig(root = process.cwd()) {
   if (!raw.title) {
     throw new Error('config must have a "title" field');
   }
-  if (!raw.links || raw.links.length === 0) {
-    throw new Error("config must have at least one link");
+  if (!raw.rows || raw.rows.length === 0) {
+    throw new Error('config must have at least one row');
+  }
+
+  // Section IDs must be unique across all rows
+  const ids = new Set();
+
+  for (const [rowIndex, row] of raw.rows.entries()) {
+    if (!row.sections || row.sections.length === 0) {
+      throw new Error(`row ${rowIndex + 1} must have at least one section`);
+    }
+
+    for (const section of row.sections) {
+      if (!section.id) {
+        throw new Error('each section must have an "id" field');
+      }
+      if (ids.has(section.id)) {
+        throw new Error(`duplicate section id: "${section.id}"`);
+      }
+      ids.add(section.id);
+
+      if (!section.type || !VALID_SECTION_TYPES.includes(section.type)) {
+        throw new Error(
+          `section "${section.id}" has invalid type "${section.type}". Valid types: ${VALID_SECTION_TYPES.join(', ')}`
+        );
+      }
+    }
   }
 
   return {
@@ -31,9 +67,17 @@ function loadConfig(root = process.cwd()) {
       radius: raw.theme?.radius || "10px",
       border: raw.theme?.border || null,
     },
-    links: raw.links,
-    posts_dir: raw.posts_dir || null,
-    layout: raw.layout || 'blog',
+    rows: raw.rows.map((row, i) => ({
+      columnWidth: resolveColumnWidth(row.column_width, `row ${i + 1}`),
+      sections: row.sections.map(s => ({
+        id: s.id,
+        type: s.type,
+        title: s.title || null,
+        links: s.links || [],
+        posts_dir: s.posts_dir || null,
+        width: s.width != null ? s.width : 1,
+      })),
+    })),
   };
 }
 
