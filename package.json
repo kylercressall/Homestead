@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "build": "node src/build.js",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "keywords": [],
   "author": "Kyler Cressall",
@@ -20,7 +22,8 @@
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.2",
     "babel-jest": "^30.3.0",
-    "jest": "^30.3.0"
+    "jest": "^30.3.0",
+    "wrangler": "^4.80.0"
   },
   "jest": {
     "transformIgnorePatterns": [
