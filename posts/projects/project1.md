@@ -1,30 +1,10 @@
 ---
-title: "Certification 1"
-date: 2026-03-19
-subtitle: "Expertise in 3d modelling using Blender 5"
+title: "Bachelors in Computer Science"
+date: 2026-05-30
+subtitle: "Graduate at UVU in Spring 2026"
 ---
 
-## Why I built this
+## Graduation
+I will be graduating April 2026 with my bachelors in computer science (cs emphasis) at UVU! 
 
-I wanted a simple place to host all of my links that doesn't require even more accounts than I already have (be able to host with Github Pages, not other hosting sites).
-Homestead is a simple repo to easily add your own links and posts customized for you. It will also act as
-a good starting point to build additional features on top of in the future.
-
-## What it can do
-
-- Customizable colors, fonts, and layout all in one YAML file
-- Social links with icons
-- Blog posts written in markdown (like this one)
-- Outputs static HTML to easily host on Github Pages
-
-## A code example
-
-```js
-// This is what the build script does at its core
-const html = template({ title, links, posts });
-fs.writeFileSync("dist/index.html", html);
-```
-
-## Potential Additional Features
-
-More themes, more link options and icons, imbed photos/gifs, more complex posts, and building the repo as a cli tool.
+(I'll add more details once I officially get there).

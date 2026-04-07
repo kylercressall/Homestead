@@ -1,20 +1,20 @@
 # Your display name - shown as the page title and <h1>
-title: "Your Name"
+title: "Kyler Cressall"
 
 # Short bio shown below your name (optional)
-bio: "Building things on the internet."
+bio: "Programming and programming and programming"
 
 # Path to your profile picture, relative to this file (optional)
-avatar: "./images/avatar.png"
+# avatar: "./images/avatar.png"
 
 theme:
-  background: "#f6f1e8" # warm paper-like background
-  surface: "#fffaf2"    # soft card/button background
-  accent: "#c26d3a"     # earthy terracotta hover/accent
-  text: "#2f241f"       # deep brown text
+  background: "#13161e" # dark with blue undertone
+  surface: "#1c2130"    # blue-tinted card/button background
+  accent: "#4a8fd4"     # medium blue accent
+  text: "#dde3ef"       # cool blue-tinted off-white text
   font: "Oxygen"        # editorial feel
   radius: "16px"        # soft corners
-  border: "#d4b99a"     # optional outlines (omit to disable)
+  border: "#2a3550"     # blue-tinted borders
 
 # The page is built from rows, stacked top to bottom.
 # Each row holds one or more sections displayed as side-by-side columns.
@@ -44,24 +44,21 @@ rows:
         width: 3
         links:
           - label: "GitHub"
-            url: "https://github.com/yourname"
+            url: "https://github.com/kylercressall"
             icon: github
 
-          - label: "Twitter / X"
-            url: "https://x.com/yourname"
-            icon: twitter
-
-          - label: "My Website"
-            url: "https://yoursite.com"
-            icon: globe
-
           - label: "LinkedIn"
-            url: "https://linkedin.com/in/yourname"
+            url: "https://www.linkedin.com/in/kyler-cressall-210279255/"
             icon: linkedin
 
-          - label: "Email"
-            url: "mailto:you@example.com"
+          - label: "Email (kyler@cressall.net)"
+            url: "kyler@cressall.net"
             icon: email
+            
+          - label: "My Website (here)"
+            url: "kylercressall.dev"
+            icon: globe
+
 
       - id: "projects"
         type: "portfolio"
@@ -69,9 +66,9 @@ rows:
         width: 5
         posts_dir: "./posts/projects"
 
-  - column_width: medium
-    sections:
-      - id: "blog"
-        type: "blog"
-        title: "Blog"
-        posts_dir: "./posts/writing"
+  # - column_width: medium
+  #   sections:
+  #     - id: "blog"
+  #       type: "blog"
+  #       title: "Blog"
+  #       posts_dir: "./posts/writing"
